@@ -144,7 +144,7 @@ export class HierarchyRowsBuilder extends PlainRowsBuilder {
         const className = collapsed ? indicatorCollapsedClass : '';
         hierarchyIndicator.innerHTML = `
             <a href tabindex="0" role="button" class="wp-table--hierarchy-indicator ${className}">
-              <span class="wp-table--hierarchy-indicator-icon"></span>
+              <span class="wp-table--hierarchy-indicator-icon" aria-hidden="true"></span>
               <span class="wp-table--hierarchy-indicator-expanded hidden-for-sighted">${this.text.expanded(level)}</span>
               <span class="wp-table--hierarchy-indicator-collapsed hidden-for-sighted">${this.text.collapsed(level)}</span>
             </a>
