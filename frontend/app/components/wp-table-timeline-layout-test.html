@@ -1,5 +1,51 @@
 <html>
-<head><title>test</title></head>
+<head>
+  <title>test</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.min.js"></script>-->
+  <script type="text/javascript">
+      $(function () {
+          "use strict";
+
+//          Rx.Observable.fromEvent(document.getElementById("inputScrollLeft"), "input")
+//                  .subscribe(function (v) {
+//                      document.getElementById("scrollLeft").scrollLeft = parseInt(v.target.value);
+//                  });
+//          Rx.Observable.fromEvent(document.getElementById("left"), "scroll")
+//                  .subscribe(function (v) {
+//                      document.getElementById("right").scrollTop = parseInt(v.target.scrollTop);
+//                  });
+
+
+          var inCb = false;
+
+          document.getElementById("left").onscroll = function (ev) {
+//              if (inCb) {
+//                  ev.stopPropagation();
+//                  ev.preventDefault();
+//                  return;
+//              }
+//              inCb = true;
+//              console.log("scroll left");
+              document.getElementById("right").scrollTop = ev.target.scrollTop;
+//              inCb = false;
+          };
+
+          document.getElementById("right").onscroll = function (ev) {
+//              if (inCb) {
+//                  ev.stopPropagation();
+//                  ev.preventDefault();
+//                  return;
+//              }
+//              inCb = true;
+//              console.log("scroll right");
+              document.getElementById("left").scrollTop = ev.target.scrollTop;
+//              inCb = false;
+          };
+
+      });
+  </script>
+</head>
 
 <body style="background-color: lightgrey; margin: 0 0;">
 
@@ -8,63 +54,63 @@
   <div style="flex: 0 0 50px; background-color: lightblue">toolbar</div>
   <div style="flex: 0 0 100px; background-color: lightyellow">filter</div>
 
-  <div style="flex: 1 1 auto; overflow-y: scroll; display: flex">
+  <div style="flex: 1 1 auto; display: flex">
 
-    <div style="flex: 1 1 ; background-color: lightcoral; overflow-x: visible; overflow-y: scroll">
-      <table style="">
-        <thead style="position: sticky; top: 0;">
-        <tr style="">
-          <td style="height: 100px; background-color: coral; padding: 0 0">Header 1</td>
-          <td style="height: 100px; background-color: coral; padding: 0 0">Header 2</td>
-        </tr>
-        </thead>
-        <tbody style="">
-        <tr>
-          <td><h1>fjdsaklfödajfdölsafjdklsöfjdkl</h1></td>
-          <td><h1>b</h1></td>
-        </tr>
-        <tr>
-          <td><h1>c</h1></td>
-          <td><h1>rueqirequwpiorqwpruioeqrupiweqrupieq</h1></td>
-        </tr>
-        <tr>
-          <td><h1>e</h1></td>
-          <td><h1>f</h1></td>
-        </tr>
-        <tr>
-          <td><h1>g</h1></td>
-          <td><h1>h</h1></td>
-        </tr>
-        <tr>
-          <td><h1>i</h1></td>
-          <td><h1>j</h1></td>
-        </tr>
-        <tr>
-          <td><h1>k</h1></td>
-          <td><h1>l</h1></td>
-        </tr>
-        <tr>
-          <td><h1>m</h1></td>
-          <td><h1>n</h1></td>
-        </tr>
-        <tr>
-          <td><h1>o</h1></td>
-          <td><h1>p</h1></td>
-        </tr>
-        </tbody>
-      </table>
+    <div id="left" style="flex: 1 1; margin-right: -1px; overflow-x: scroll; overflow-y: scroll;">
+      <div style="height: 700px; background-color: blueviolet;">
+        <table style="background-color: lightcoral;">
+          <thead style="position: sticky; top: 0;">
+          <tr style="">
+            <td style="height: 100px; background-color: coral; padding: 0 0">Header 1</td>
+            <td style="height: 100px; background-color: coral; padding: 0 0">Header 2</td>
+          </tr>
+          </thead>
+          <tbody style="">
+          <tr>
+            <td><h1>fjdsaklfödajfdölsafjdklsöfjdkl</h1></td>
+            <td><h1>b</h1></td>
+          </tr>
+          <tr>
+            <td><h1>c</h1></td>
+            <td><h1>rueqirequwpiorqwpruioeqrupiweqrupieq</h1></td>
+          </tr>
+          <tr>
+            <td><h1>e</h1></td>
+            <td><h1>f</h1></td>
+          </tr>
+          <tr>
+            <td><h1>g</h1></td>
+            <td><h1>h</h1></td>
+          </tr>
+          <tr>
+            <td><h1>i</h1></td>
+            <td><h1>j</h1></td>
+          </tr>
+          <tr>
+            <td><h1>k</h1></td>
+            <td><h1>l</h1></td>
+          </tr>
+          <tr>
+            <td><h1>m</h1></td>
+            <td><h1>n</h1></td>
+          </tr>
+          <tr>
+            <td><h1>o</h1></td>
+            <td><h1>p</h1></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div style="flex: 1 1 ">
-      right
+    <div id="right" style="flex: 1 1 ; overflow: scroll;">
+      <div style="width: 5000px; height: 700px; background-color: greenyellow;">
+        sdfjdsk fjsdklf sdl <br>
+        sdfjdsk fjsdklf sdl <br>
+        sdfjdsk fjsdklf sdl <br>
+        sdfjdsk fjsdklf sdl <br>
+      </div>
     </div>
-
-
-
-
-
-
-
 
   </div>
 

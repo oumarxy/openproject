@@ -1,0 +1,117 @@
+<html>
+<head>
+  <title>test</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.min.js"></script>
+  <script type="text/javascript">
+      $(function () {
+//          Rx.Observable.fromEvent(document.getElementById("inputScrollLeft"), "input")
+//                  .subscribe(function (v) {
+//                      document.getElementById("scrollLeft").scrollLeft = parseInt(v.target.value);
+//                  });
+
+          Rx.Observable.fromEvent(document.getElementById("inputScrollLeft"), "scroll")
+                  .subscribe(function (v) {
+                      document.getElementById("scrollLeft").scrollLeft = parseInt(v.target.scrollLeft);
+                  });
+
+      });
+  </script>
+</head>
+
+<body style="background-color: lightgrey; margin: 0 0;">
+
+<div style="display: flex; flex-direction: column; height: 100%">
+
+  <!-- toolbar 1 -->
+  <div style="flex: 0 0 50px; background-color: lightblue">toolbar</div>
+
+  <!-- toolbar 2 -->
+  <div style="flex: 0 0 100px; background-color: lightyellow">filter</div>
+
+  <div style="flex: 1 1 auto; overflow-y: scroll; overflow-x: hidden; ">
+
+    <!-- table -->
+    <div id="scrollLeft" style="float: left; overflow-x: hidden; overflow-y: hidden; width: 40vw">
+      <table style="background-color: lightcoral">
+        <thead style="position: sticky; top: 0;">
+        <tr style="">
+          <td style="height: 100px; background-color: coral; padding: 0 0">Header 1</td>
+          <td style="height: 100px; background-color: coral; padding: 0 0">Header 2</td>
+        </tr>
+        </thead>
+        <tbody style="">
+        <tr>
+          <td><h1>fjdsaklfödajfdölsafjdklsöfjdkl</h1></td>
+          <td><h1>b</h1></td>
+        </tr>
+        <tr>
+          <td><h1>c</h1></td>
+          <td><h1>rueqirequwpiorqwpruioeqrupiweqrupieq</h1></td>
+        </tr>
+        <tr>
+          <td><h1>e</h1></td>
+          <td><h1>f</h1></td>
+        </tr>
+        <tr>
+          <td><h1>g</h1></td>
+          <td><h1>h</h1></td>
+        </tr>
+        <tr>
+          <td><h1>i</h1></td>
+          <td><h1>j</h1></td>
+        </tr>
+        <tr>
+          <td><h1>k</h1></td>
+          <td><h1>l</h1></td>
+        </tr>
+        <tr>
+          <td><h1>m</h1></td>
+          <td><h1>n</h1></td>
+        </tr>
+        <tr>
+          <td><h1>o</h1></td>
+          <td><h1>p</h1></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- timeline -->
+    <div style="float: left; background-color: greenyellow ">
+      right fjsdklf sdjklf sdjfklds
+    </div>
+
+
+  </div>
+
+  <div style="flex: 0 0 30px; display: flex; background-color: purple; ">
+    <!--<input id="inputScrollLeft" type="number" value="0"/>-->
+
+    <div id="inputScrollLeft" style="flex: 1 1; overflow-y: hidden; overflow-x: scroll">
+      <div style="width: 2000px; height: 20px; background-color: red">
+        fjdsklf dasjfökda jfkldaö fjsdaklf jiorewruweioruiofg jsdklf sahfgjsd fghsj vjsdaklf sdahfuisd bvjhksfg hrgewui
+      </div>
+    </div>
+
+    <div id="inputScrollRight" style="flex: 1 1; overflow-y: hidden; overflow-x: scroll">
+      <div style="width: 2000px; height: 20px; background-color: blue">
+        fjdsklf dasjfökda jfkldaö fjsdaklf jiorewruweioruiofg jsdklf sahfgjsd fghsj vjsdaklf sdahfuisd bvjhksfg hrgewui
+      </div>
+    </div>
+
+    <!--<div style="flex: 1 1; overflow-y: hidden; overflow-x: scroll">-->
+      <!--<div style="width: 2000px; height: 20px; background-color: blue">-->
+        <!--fjdsklf dasjfökda jfkldaö fjsdaklf jiorewruweioruiofg jsdklf sahfgjsd fghsj vjsdaklf sdahfuisd bvjhksfg hrgewui-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+  </div>
+  <div style="flex: 0 0 30px; background-color: grey">footer</div>
+
+</div>
+
+</body>
+
+</html>
