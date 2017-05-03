@@ -14,8 +14,10 @@
 
           function sync(ev) {
               ev.preventDefault();
-              elLeft.scrollTop = elLeft.scrollTop + ev.deltaY;
-              elRight.scrollTop = elRight.scrollTop + ev.deltaY;
+              window.requestAnimationFrame(function () {
+                  elLeft.scrollTop = elLeft.scrollTop + ev.deltaY;
+                  elRight.scrollTop = elRight.scrollTop + ev.deltaY;
+              });
           }
 
           elLeft.onscroll = function (ev) {
