@@ -7,27 +7,57 @@
       $(function () {
           "use strict";
 
-          var synced = false;
+          var syncedLeft = false;
+          var syncedRight = false;
+          var elLeft = document.getElementById("left");
+          var elRight = document.getElementById("right");
 
-          document.getElementById("left").onscroll = function (ev) {
-              if (!synced) {
-                  synced = true;
-                  document.getElementById("right").scrollTop = ev.target.scrollTop;
-              } else {
-                  synced = false;
+          function sync(ev) {
+              ev.preventDefault();
+              elLeft.scrollTop = elLeft.scrollTop + ev.deltaY;
+              elRight.scrollTop = elRight.scrollTop + ev.deltaY;
+          }
+
+          elLeft.onscroll = function (ev) {
+//              console.log("left scroll");
+              syncedLeft = true;
+              if (!syncedRight) {
+                  elRight.scrollTop = ev.target.scrollTop;
+              }
+              if (syncedLeft && syncedRight) {
+                  syncedLeft = false;
+                  syncedRight = false;
               }
           };
 
-          document.getElementById("right").onscroll = function (ev) {
-              if (!synced) {
-                  synced = true;
-                  document.getElementById("left").scrollTop = ev.target.scrollTop;
-              } else {
-                  synced = false;
+          elRight.onscroll = function (ev) {
+//              console.log("right scroll");
+              syncedRight = true;
+              if (!syncedLeft) {
+                  elLeft.scrollTop = ev.target.scrollTop;
+              }
+              if (syncedLeft && syncedRight) {
+                  syncedLeft = false;
+                  syncedRight = false;
               }
           };
 
-          // init
+          elLeft.onwheel = function (ev) {
+//              console.log("left wheel");
+              syncedLeft = true;
+              syncedRight = true;
+              sync(ev);
+          };
+
+          elRight.onwheel = function (ev) {
+//              console.log("right wheel");
+              syncedLeft = true;
+              syncedRight = true;
+              sync(ev);
+          };
+
+          ////////////////////////////////////
+
           var rowCount = 500;
           var colCount = 20;
           var row2ndColor = "#d8e6ff";
@@ -84,7 +114,7 @@
       height: 30px;;
       position: sticky;
       top: 0;
-      z-index:0;
+      z-index: 100;
     }
   </style>
 
