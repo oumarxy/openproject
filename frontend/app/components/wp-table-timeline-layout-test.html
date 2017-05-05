@@ -4,102 +4,102 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.min.js"></script>-->
   <script type="text/javascript">
-      $(function () {
-          "use strict";
+    $(function () {
+      "use strict";
 
-          var syncedLeft = false;
-          var syncedRight = false;
-          var elLeft = document.getElementById("left");
-          var elRight = document.getElementById("right");
+      var syncedLeft = false;
+      var syncedRight = false;
+      var elLeft = document.getElementById("left");
+      var elRight = document.getElementById("right");
 
-          function sync(ev) {
-              ev.preventDefault();
-              window.requestAnimationFrame(function () {
-                  elLeft.scrollTop = elLeft.scrollTop + ev.deltaY;
-                  elRight.scrollTop = elRight.scrollTop + ev.deltaY;
-              });
-          }
+      function sync(ev) {
+        ev.preventDefault();
+        window.requestAnimationFrame(function () {
+          elLeft.scrollTop = elLeft.scrollTop + ev.deltaY;
+          elRight.scrollTop = elRight.scrollTop + ev.deltaY;
+        });
+      }
 
-          elLeft.onscroll = function (ev) {
+      elLeft.onscroll = function (ev) {
 //              console.log("left scroll");
-              syncedLeft = true;
-              if (!syncedRight) {
-                  elRight.scrollTop = ev.target.scrollTop;
-              }
-              if (syncedLeft && syncedRight) {
-                  syncedLeft = false;
-                  syncedRight = false;
-              }
-          };
+        syncedLeft = true;
+        if (!syncedRight) {
+          elRight.scrollTop = ev.target.scrollTop;
+        }
+        if (syncedLeft && syncedRight) {
+          syncedLeft = false;
+          syncedRight = false;
+        }
+      };
 
-          elRight.onscroll = function (ev) {
+      elRight.onscroll = function (ev) {
 //              console.log("right scroll");
-              syncedRight = true;
-              if (!syncedLeft) {
-                  elLeft.scrollTop = ev.target.scrollTop;
-              }
-              if (syncedLeft && syncedRight) {
-                  syncedLeft = false;
-                  syncedRight = false;
-              }
-          };
+        syncedRight = true;
+        if (!syncedLeft) {
+          elLeft.scrollTop = ev.target.scrollTop;
+        }
+        if (syncedLeft && syncedRight) {
+          syncedLeft = false;
+          syncedRight = false;
+        }
+      };
 
-          elLeft.onwheel = function (ev) {
+      elLeft.onwheel = function (ev) {
 //              console.log("left wheel");
-              syncedLeft = true;
-              syncedRight = true;
-              sync(ev);
-          };
+        syncedLeft = true;
+        syncedRight = true;
+        sync(ev);
+      };
 
-          elRight.onwheel = function (ev) {
+      elRight.onwheel = function (ev) {
 //              console.log("right wheel");
-              syncedLeft = true;
-              syncedRight = true;
-              sync(ev);
-          };
+        syncedLeft = true;
+        syncedRight = true;
+        sync(ev);
+      };
 
-          ////////////////////////////////////
+      ////////////////////////////////////
 
-          var rowCount = 500;
-          var colCount = 20;
-          var row2ndColor = "#d8e6ff";
+      var rowCount = 500;
+      var colCount = 20;
+      var row2ndColor = "#d8e6ff";
 
-          // left
-          var tbody = $("tbody")[0];
-          for (var r = 1; r <= rowCount; r++) {
-              var tr = document.createElement("tr");
-              var bc = r % 2 === 0 ? "none" : row2ndColor;
+      // left
+      var tbody = $("tbody")[0];
+      for (var r = 1; r <= rowCount; r++) {
+        var tr = document.createElement("tr");
+        var bc = r % 2 === 0 ? "none" : row2ndColor;
 
-              for (var c = 1; c <= colCount; c++) {
-                  var td = document.createElement("td");
+        for (var c = 1; c <= colCount; c++) {
+          var td = document.createElement("td");
 
-                  td.innerHTML =
-                          "<div style='white-space: nowrap; height: 30px; border-bottom: 1px solid lightgrey; " +
-                          "background-color: " + bc + "'>"
-                          + "Tabelle Cell Row " + r + " Column " + c
-                          + "</div>";
+          td.innerHTML =
+            "<div style='white-space: nowrap; height: 30px; border-bottom: 1px solid lightgrey; " +
+            "background-color: " + bc + "'>"
+            + "Tabelle Cell Row " + r + " Column " + c
+            + "</div>";
 
-                  tr.appendChild(td);
-              }
-              tbody.appendChild(tr);
-          }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
 
-          // right
-          var timeline = $("#timeline")[0];
-          for (r = 1; r <= rowCount; r++) {
-              var tlCell = document.createElement("div");
-              bc = r % 2 === 0 ? "none" : row2ndColor;
-              var left = Math.random() * 500;
-              var width = Math.random() * 200;
+      // right
+      var timeline = $("#timeline")[0];
+      for (r = 1; r <= rowCount; r++) {
+        var tlCell = document.createElement("div");
+        bc = r % 2 === 0 ? "none" : row2ndColor;
+        var left = Math.random() * 500;
+        var width = Math.random() * 200;
 
-              tlCell.innerHTML = "<div style='height: 30px; border-bottom: 1px solid lightgrey; " +
-                      "background-color: " + bc + "'>" +
-                      "<div class='bar' style='left: " + left + "px; width: " + width + "px '></div>" +
-                      "</div>";
-              timeline.appendChild(tlCell);
-          }
+        tlCell.innerHTML = "<div style='height: 30px; border-bottom: 1px solid lightgrey; " +
+          "background-color: " + bc + "'>" +
+          "<div class='bar' style='left: " + left + "px; width: " + width + "px '></div>" +
+          "</div>";
+        timeline.appendChild(tlCell);
+      }
 
-      });
+    });
   </script>
 
   <style type="text/css">
@@ -125,56 +125,61 @@
 <body style="margin: 0 0;">
 
 <div style="display: flex; flex-direction: column; height: 100%">
-
   <div style="flex: 0 0 50px; background-color: lightblue">toolbar</div>
   <div style="flex: 0 0 100px; background-color: lightyellow">filter</div>
 
+  <!-- SPLIT VIEW container -->
   <div style="flex: 1 1 auto; display: flex">
+    <!-- TABLE + TIMELINE -->
+    <div style="flex: 2; display: flex; overflow: hidden">
 
-    <div id="left"
-         style="flex: 1 1; margin-right: -1px; overflow: scroll; ;">
+      <div id="left"
+           style="flex: 1 1; margin-right: -1px; overflow: scroll; ;">
 
-      <table style="" cellspacing="0" cellpadding="0">
-        <thead style="position: sticky; top: 0;">
-        <tr style="border: none; padding: 0; margin: 0">
-          <td style="height: 30px; background-color: yellow;">Header 1</td>
-          <td style="height: 30px; background-color: yellow;">Header 2</td>
-          <td style="height: 30px; background-color: yellow;">Header 3</td>
-          <td style="height: 30px; background-color: yellow;">Header 4</td>
-          <td style="height: 30px; background-color: yellow;">Header 5</td>
-          <td style="height: 30px; background-color: yellow;">Header 6</td>
-          <td style="height: 30px; background-color: yellow;">Header 7</td>
-          <td style="height: 30px; background-color: yellow;">Header 8</td>
-          <td style="height: 30px; background-color: yellow;">Header 9</td>
-          <td style="height: 30px; background-color: yellow;">Header 10</td>
-          <td style="height: 30px; background-color: yellow;">Header 11</td>
-          <td style="height: 30px; background-color: yellow;">Header 12</td>
-          <td style="height: 30px; background-color: yellow;">Header 13</td>
-          <td style="height: 30px; background-color: yellow;">Header 14</td>
-          <td style="height: 30px; background-color: yellow;">Header 15</td>
-          <td style="height: 30px; background-color: yellow;">Header 16</td>
-          <td style="height: 30px; background-color: yellow;">Header 17</td>
-          <td style="height: 30px; background-color: yellow;">Header 18</td>
-          <td style="height: 30px; background-color: yellow;">Header 19</td>
-          <td style="height: 30px; background-color: yellow;">Header 20</td>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+        <table style="" cellspacing="0" cellpadding="0">
+          <thead style="position: sticky; top: 0;">
+          <tr style="border: none; padding: 0; margin: 0">
+            <td style="height: 30px; background-color: yellow;">Header 1</td>
+            <td style="height: 30px; background-color: yellow;">Header 2</td>
+            <td style="height: 30px; background-color: yellow;">Header 3</td>
+            <td style="height: 30px; background-color: yellow;">Header 4</td>
+            <td style="height: 30px; background-color: yellow;">Header 5</td>
+            <td style="height: 30px; background-color: yellow;">Header 6</td>
+            <td style="height: 30px; background-color: yellow;">Header 7</td>
+            <td style="height: 30px; background-color: yellow;">Header 8</td>
+            <td style="height: 30px; background-color: yellow;">Header 9</td>
+            <td style="height: 30px; background-color: yellow;">Header 10</td>
+            <td style="height: 30px; background-color: yellow;">Header 11</td>
+            <td style="height: 30px; background-color: yellow;">Header 12</td>
+            <td style="height: 30px; background-color: yellow;">Header 13</td>
+            <td style="height: 30px; background-color: yellow;">Header 14</td>
+            <td style="height: 30px; background-color: yellow;">Header 15</td>
+            <td style="height: 30px; background-color: yellow;">Header 16</td>
+            <td style="height: 30px; background-color: yellow;">Header 17</td>
+            <td style="height: 30px; background-color: yellow;">Header 18</td>
+            <td style="height: 30px; background-color: yellow;">Header 19</td>
+            <td style="height: 30px; background-color: yellow;">Header 20</td>
+          </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
 
-    </div>
+      </div>
 
-    <div id="right"
-         style="flex: 1 1; overflow: scroll; ">
+      <div id="right"
+           style="flex: 1 1; overflow: scroll; ">
 
-      <div id="timeline">
-        <div class="header" style="">Timeline</div>
+        <div id="timeline">
+          <div class="header" style="">Timeline</div>
+        </div>
       </div>
     </div>
-
+    <!-- SPLIT VIEW -->
+    <div style="flex: 1; overflow-y: scroll">
+      <div style="background: antiquewhite; height: 100%;">content</div>
+    </div>
   </div>
-
   <div style="flex: 0 0 30px; background-color: grey">footer</div>
 
 </div>
