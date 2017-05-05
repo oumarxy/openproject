@@ -13,7 +13,8 @@
           var elRight = document.getElementById("right");
 
           function sync(ev) {
-              const delta = ev.deltaY > 0 ? 15 : -15;
+              const scrollAmout = 30;
+              const delta = ev.deltaY > 0 ? scrollAmout : -scrollAmout;
 
               ev.preventDefault();
               window.requestAnimationFrame(function () {
